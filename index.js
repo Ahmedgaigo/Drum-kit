@@ -1,8 +1,26 @@
 function handleClick() {
 
     var btn = this.innerHTML;
+    makeNoise(btn);  
+}
 
-    switch (btn) {
+var numBtn = document.querySelectorAll(".drum").length;
+
+for (var i = 0; i < numBtn; i++) {
+    document.querySelectorAll(".drum")[i].addEventListener("click", handleClick);
+}
+
+function keyPressed(event) {
+    makeNoise(event.key);
+}
+
+document.addEventListener("keydown", keyPressed);
+
+
+// makes noise
+function makeNoise(key) {
+
+    switch (key) {
         case "w":
             var audio = new Audio("./sounds/tom-1.mp3");
             audio.play();
@@ -41,10 +59,4 @@ function handleClick() {
         default:
             break;
     }
-}
-
-var numBtn = document.querySelectorAll(".drum").length;
-
-for (var i = 0; i < numBtn; i++) {
-    document.querySelectorAll(".drum")[i].addEventListener("click", handleClick);
 }
