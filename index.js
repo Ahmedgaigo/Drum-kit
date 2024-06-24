@@ -1,7 +1,8 @@
 function handleClick() {
 
     var btn = this.innerHTML;
-    makeNoise(btn);  
+    makeNoise(btn);
+    animate(btn);  
 }
 
 var numBtn = document.querySelectorAll(".drum").length;
@@ -10,8 +11,11 @@ for (var i = 0; i < numBtn; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", handleClick);
 }
 
+
+// when key is pressed
 function keyPressed(event) {
     makeNoise(event.key);
+    animate(event.key);
 }
 
 document.addEventListener("keydown", keyPressed);
@@ -59,4 +63,15 @@ function makeNoise(key) {
         default:
             break;
     }
+}
+
+// animate
+function animate(key) {
+    var activeBtn = document.querySelector("." + key);
+
+    activeBtn.classList.add("pressed");
+
+    setTimeout(function() {
+        activeBtn.classList.remove("pressed");
+    }, 100);
 }
